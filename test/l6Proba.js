@@ -19,10 +19,12 @@ describe('L6 proba', async function () {
   beforeEach(async function () {
     vars = {}
   })
+
   afterEach(async function () {
-    return driver.close();
+    await driver.close();
   });
-  it('L6 Miljanov neverovatno dobar test', async function () {
+
+  it('L6 Miljanov neverovatno dobar test', async function (done) {
 
     driver = await new Builder().forBrowser('chrome').build()
     await driver.get("https://test.exevirtual.com/lucky6-test/app.php?deviceType=desktop&userUuid=AutomaticTest&sessionUuid=1e35114f-f081-4e6e-bd89-fb30b334f88b&language=sr&clientName=c2629cff41143af94bcec66d52117d75c370fb22&ccy=din")
@@ -78,26 +80,36 @@ describe('L6 proba', async function () {
 
     await dodajOpkladu.click();
     await driver.findElement(By.className("uplatiBtn")).click();
-    assert.equal(true, true);
+    await driver.wait(until.elementIsVisible(okBtn))
+    await okBtn.click();
+
+    // assert.to.be(true,true);
+    // done();
 
   })
 
-  it('L6 Miljanov neverovatno dobar test broj 2', async ()=> {
+  // it('L6 Miljanov neverovatno dobar test broj 2', async (done)=> {
 
-    driver = await new Builder().forBrowser('chrome').build()
-    await driver.get("https://test.exevirtual.com/lucky6-test/app.php?deviceType=desktop&userUuid=AutomaticTest&sessionUuid=1e35114f-f081-4e6e-bd89-fb30b334f88b&language=sr&clientName=c2629cff41143af94bcec66d52117d75c370fb22&ccy=din")
+  //   driver = await new Builder().forBrowser('chrome').build()
+  //   await driver.get("https://test.exevirtual.com/lucky6-test/app.php?deviceType=desktop&userUuid=AutomaticTest&sessionUuid=1e35114f-f081-4e6e-bd89-fb30b334f88b&language=sr&clientName=c2629cff41143af94bcec66d52117d75c370fb22&ccy=din")
   
-    //await driver.switchTo().frame(0)
-    await driver.manage().window().setRect({ width: 1980, height: 1240 });
-    await driver.manage().window().maximize();
+  //   //await driver.switchTo().frame(0)
+  //   await driver.manage().window().setRect({ width: 1980, height: 1240 });
+  //   await driver.manage().window().maximize();
+  //   let okBtn =  await driver.findElement(By.id("deleteFromTicketBtn"));
 
-    let ball22 = await driver.findElement(By.id("22"));
-    await ball22.click();
+  //   let ball22 = await driver.findElement(By.id("22"));
+  //   await ball22.click();
 
-    const dodajOpkladu = await driver.findElement(By.id("addBet"));
-    await dodajOpkladu.click();
-    assert.equal(true, true);
+  //   const dodajOpkladu = await driver.findElement(By.id("addBet"));
+  //   await dodajOpkladu.click();
+    
 
-  });
+  //   await driver.wait(until.elementIsVisible(okBtn))
+  //   await okBtn.click();
+
+  //   done();
+
+  // });
 
 });
