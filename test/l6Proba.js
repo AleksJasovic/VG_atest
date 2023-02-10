@@ -5,24 +5,27 @@ const { Builder, By, Key, until } = require('selenium-webdriver')
 const assert = require('assert')
 const chrome = require('selenium-webdriver/chrome')
 const chai = require('chai')
+const { expect } = require('chai')
 
+const payin = () => {
 
-describe('L6 proba', function () {
+}
+
+describe('L6 proba', async function () {
 
   let driver
   let vars
+
   beforeEach(async function () {
-    driver = await new Builder().forBrowser('chrome').build()
     vars = {}
   })
-  afterEach(function () {
-    //  return driver.close();
+  afterEach(async function () {
+    return driver.close();
   });
-  it('L6 proba', async function () {
-    //setTimeout(async function () {
-    await driver.get("https://test.exevirtual.com/lucky6-test/app.php?deviceType=desktop&userUuid=AutomaticTest&sessionUuid=1e35114f-f081-4e6e-bd89-fb30b334f88b&language=sr&clientName=c2629cff41143af94bcec66d52117d75c370fb22&ccy=din")
+  it('L6 Miljanov neverovatno dobar test', async function () {
 
-    //await driver.switchTo().frame(0)
+    driver = await new Builder().forBrowser('chrome').build()
+    await driver.get("https://test.exevirtual.com/lucky6-test/app.php?deviceType=desktop&userUuid=AutomaticTest&sessionUuid=1e35114f-f081-4e6e-bd89-fb30b334f88b&language=sr&clientName=c2629cff41143af94bcec66d52117d75c370fb22&ccy=din")
     await driver.manage().window().setRect({ width: 1980, height: 1240 });
     await driver.manage().window().maximize();
 
@@ -48,38 +51,53 @@ describe('L6 proba', function () {
     await driver.wait(until.elementIsVisible(okBtn))
     await okBtn.click();
 
+    // dodavanje nove selekcije 
+
+    let firstBall = await driver.findElement(By.className("prvaKugla"));
+    firstBall.click();
+
+    await dodajOpkladu.click();
+    await driver.findElement(By.className("uplatiBtn")).click();
+
+    await driver.wait(until.elementIsVisible(okBtn))
+    await okBtn.click();
+
+    // dodavanje boje 
+
+    let redBall = await driver.findElement(By.className("loptaDesno bojaPrveDve red"));
+    redBall.click();
+
+    let greenBall = await driver.findElement(By.className("loptaDesno bojaPrveDve green"));
+    greenBall.click();
+
+    let blueBall = await driver.findElement(By.className("loptaDesno bojaPrveDve blue"));
+    blueBall.click();
+
+    let purpleBall = await driver.findElement(By.className("loptaDesno bojaPrveDve purple"));
+    purpleBall.click();
+
+    await dodajOpkladu.click();
+    await driver.findElement(By.className("uplatiBtn")).click();
+    assert.equal(true, true);
+
+  })
+
+  it('L6 Miljanov neverovatno dobar test broj 2', async ()=> {
+
+    driver = await new Builder().forBrowser('chrome').build()
+    await driver.get("https://test.exevirtual.com/lucky6-test/app.php?deviceType=desktop&userUuid=AutomaticTest&sessionUuid=1e35114f-f081-4e6e-bd89-fb30b334f88b&language=sr&clientName=c2629cff41143af94bcec66d52117d75c370fb22&ccy=din")
+  
+    //await driver.switchTo().frame(0)
+    await driver.manage().window().setRect({ width: 1980, height: 1240 });
+    await driver.manage().window().maximize();
+
+    let ball22 = await driver.findElement(By.id("22"));
+    await ball22.click();
+
+    const dodajOpkladu = await driver.findElement(By.id("addBet"));
+    await dodajOpkladu.click();
+    assert.equal(true, true);
+
   });
+
 });
-  // it('dugmici levo',async function() {
-  //   await driver.findElement(By.className('dugmiciLevoBtn prvaKugla')).click();
-  // });
-
-
-
-
-  //await driver.wait(until.ableToSwitchToFrame(By.className("lopticeNav randomPick")), 1000);
-  //await driver.findElement(By.className("dugmiciLevoBtn prvaKugla")).click();
-    // {
-    //   const elements = await driver.findElements(By.linkText("6"))
-    //   assert(elements.length)
-    // // }
-    //
-    // await driver.wait(until.elementIsEnabled(await driver.findElement(By.id("addBet"))), 5000)
-    // // {
-    //   const element2 = await driver.findElement(By.id("addBet"))
-    //   await driver.actions({ bridge: true }).moveToElement(element2).perform()
-    // // }
-    // // {
-    //   const element = await driver.findElement(By.CSS_SELECTOR, "body")
-    //   await driver.actions({ bridge: true }).moveToElement(element, 0, 0).perform()
-    // // }
-    // await driver.wait(until.elementLocated(By.css(".activeRace .additionalInfo")), 5000)
-    // {
-    //   const elements = await driver.findElements(By.css(".activeRace .additionalInfo"))
-    //   assert(elements.length)
-    // }
-    // {
-    //   const element = await driver.findElement(By.id("displayLast"))
-    //   await driver.actions({ bridge: true }).moveToElement(element).perform()
-    // }
-    // await driver.findElement(By.id("deleteFromTicketBtn")).click()
