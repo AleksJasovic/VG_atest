@@ -31,24 +31,23 @@ describe('L6 proba', function () {
 
     let dropDownHolder = await driver.findElement(By.className("dropdown-content randomOpen"));
     let rand7 = await dropDownHolder.findElement(By.id("rand-play-7"));
+    
+    await driver.wait(until.elementIsVisible(rand7));
+    rand7.click();
+    
+    const dodajOpkladu = await driver.findElement(By.id("addBet"));
+    await dodajOpkladu.click();
 
-    setTimeout(async () => {
+    const plusCredit = await driver.findElement(By.id("plus"));
+    await plusCredit.click();
 
-      rand7.click();
+    await driver.findElement(By.className("uplatiBtn")).click();
 
-      const dodajOpkladu = await driver.findElement(By.id("addBet"));
-      await dodajOpkladu.click();
+    let okBtn =  await driver.findElement(By.id("deleteFromTicketBtn"));
 
-      const plusCredit = await driver.findElement(By.id("plus"));
-      await plusCredit.click();
+    await driver.wait(until.elementIsVisible(okBtn))
+    await okBtn.click();
 
-      await driver.findElement(By.className("uplatiBtn")).click();
-
-      setTimeout(async () => {
-        await driver.findElement(By.id("deleteFromTicketBtn")).click();
-      },4000);
-
-    }, 500)
   });
 });
   // it('dugmici levo',async function() {
