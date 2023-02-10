@@ -31,7 +31,7 @@ describe('L6 proba', function () {
 
     let dropDownHolder = await driver.findElement(By.className("dropdown-content randomOpen"));
     let rand7 = await dropDownHolder.findElement(By.id("rand-play-7"));
-    
+
     setTimeout(async () => {
 
       rand7.click();
@@ -43,6 +43,10 @@ describe('L6 proba', function () {
       await plusCredit.click();
 
       await driver.findElement(By.className("uplatiBtn")).click();
+
+      setTimeout(async () => {
+        await driver.findElement(By.id("deleteFromTicketBtn")).click();
+      },4000);
 
     }, 500)
   });
