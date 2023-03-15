@@ -13,6 +13,6 @@
     "mocha": "^10.2.0"
   },
   "dependencies": {
-    "selenium-webdriver": "^4.7.1"
+    "selenium-webdriver": "^4.8.1"
   }
 }
